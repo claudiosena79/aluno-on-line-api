@@ -1,6 +1,8 @@
 package br.com.alunoonline.api.service;
 import br.com.alunoonline.api.model.Aluno;
+import br.com.alunoonline.api.model.dto.AlunoDTO;
 import br.com.alunoonline.api.repository.AlunoRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,15 @@ public class AlunoService {
 
     @Autowired
     AlunoRepository repository;
+
+
+    ModelMapper mapper = new ModelMapper();
+    public AlunoDTO consultarAlunoEmail(Long id){
+        Aluno aluno = repository.findById(id).get();
+        AlunoDTO alunoDTO = mapper.map(aluno, AlunoDTO.class);
+
+        return alunoDTO;
+    }
 
     public void create(Aluno aluno){
 
