@@ -18,7 +18,7 @@ public class ProfessorController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Professor professor){
+    public void create(@RequestBody Professor professor) {
 
         service.create(professor);
 
@@ -26,23 +26,35 @@ public class ProfessorController {
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public List<Professor> findAll(){
+    public List<Professor> findAll() {
 
         return service.findAll();
 
     }
 
+   @GetMapping("/all-asc")
+   @ResponseStatus(HttpStatus.OK)
+   public List<Professor> findAllAndOrderByNome() {
+       return service.findAllAndOrderByNome();
+    }
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<Professor> findById(Long id){
+    public Optional<Professor> findById(Long id) {
 
         return service.findById(id);
 
     }
 
+    @GetMapping("/nome-email/{nome}/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public Professor findProfessorPorNomeAndEmail(@PathVariable String nome, @PathVariable String email) {
+        return service.findProfessorPorNomeAndEmail(nome, email);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id){
+    public void deleteById(@PathVariable Long id) {
 
         service.deleteById(id);
 
@@ -50,7 +62,7 @@ public class ProfessorController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Long id, @RequestBody Professor professor){
+    public void update(@PathVariable Long id, @RequestBody Professor professor) {
 
         service.update(id, professor);
 

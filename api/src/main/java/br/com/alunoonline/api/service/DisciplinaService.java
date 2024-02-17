@@ -1,4 +1,5 @@
 package br.com.alunoonline.api.service;
+import br.com.alunoonline.api.model.Aluno;
 import br.com.alunoonline.api.model.Disciplina;
 import br.com.alunoonline.api.repository.DisciplinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,13 @@ public class DisciplinaService {
         return repository.findAll();
     }
 
-    public List ListarDisciplinasPorProfessor(String email){
-        return repository.listarDisciplinasPorProfessor(email);
+    public List listarDisciplinaPorProfessor(String email){
+        return repository.listarDisciplinaPorProfessor(email);
     }
 
+    public List<Disciplina> listarDisciplinaPorAluno(String email){
+        return repository.listarDisciplinaPorAluno(email);
+    }
     public Optional<Disciplina> findById(Long id){
         return repository.findById(id);
     }
@@ -48,6 +52,7 @@ public class DisciplinaService {
         disciplinaUpdated.setNome(disciplina.getNome());
         disciplinaUpdated.setCurso(disciplina.getCurso());
         disciplinaUpdated.setProfessor(disciplina.getProfessor());
+        disciplinaUpdated.setAluno(disciplina.getAluno());
 
         repository.save(disciplinaUpdated);
 

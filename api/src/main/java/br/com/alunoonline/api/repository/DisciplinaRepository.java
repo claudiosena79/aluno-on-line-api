@@ -11,6 +11,10 @@ import java.util.List;
 @Repository
 public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
     @Query("select d from Disciplina d where d.professor.email =:email order by d.nome asc")
-    List<Disciplina> listarDisciplinasPorProfessor(@PathVariable String email);
+    List<Disciplina> listarDisciplinaPorProfessor(@PathVariable String email);
+
+    @Query("select d from Disciplina d where d.aluno.email= :email order by nome asc")
+    List<Disciplina> listarDisciplinaPorAluno(@PathVariable String email);
     }
+
 

@@ -28,11 +28,18 @@ public class DisciplinaController {
     }
 
 
-    @GetMapping("/email/{email}")
+    @GetMapping("/email-professor/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public List listarDisciplinasPorProfessor(@PathVariable String email){
-        return service.ListarDisciplinasPorProfessor(email);
+    public List listarDisciplinaPorProfessor(@PathVariable String email){
+        return service.listarDisciplinaPorProfessor(email);
     }
+
+    @GetMapping("/email-aluno/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Disciplina> lisarDisciplinaPorAluno(@PathVariable String email){
+        return service.listarDisciplinaPorAluno(email);
+    }
+
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

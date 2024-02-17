@@ -21,6 +21,10 @@ public class Disciplina {
     @JoinColumn(name = "professor_id")
     private Professor professor;
 
+    @ManyToOne
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
+
     public String getNome() {
         return nome;
     }
@@ -43,5 +47,13 @@ public class Disciplina {
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 }

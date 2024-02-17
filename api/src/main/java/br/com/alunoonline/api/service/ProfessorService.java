@@ -15,32 +15,44 @@ public class ProfessorService {
 
     @Autowired
     ProfessorRepository repository;
-    public void create(Professor professor){
+
+    public void create(Professor professor) {
 
         repository.save(professor);
 
     }
-    public List<Professor> findAll(){
+
+    public List<Professor> findAll() {
 
         return repository.findAll();
 
     }
-    public Optional<Professor> findById(Long id){
+
+    public Optional<Professor> findById(Long id) {
 
         return repository.findById(id);
 
     }
-    public void deleteById(Long id){
+
+    public Professor findProfessorPorNomeAndEmail(String nome, String email) {
+        return repository.findProfessorPorNomeAndEmail(nome, email);
+    }
+
+    public List<Professor> findAllAndOrderByNome() {
+        return repository.findAllAndOrderByNome();
+    }
+
+    public void deleteById(Long id) {
 
         repository.deleteById(id);
 
     }
 
-    public void update(Long id, Professor professor){
+    public void update(Long id, Professor professor) {
 
         Optional<Professor> professorFromBD = findById(id);
 
-        if (professorFromBD.isEmpty()){
+        if (professorFromBD.isEmpty()) {
 
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "PROFESSOR NÃO ENCONTRADO");
 
@@ -57,7 +69,5 @@ public class ProfessorService {
         repository.save(professorUpdated);
 
     }
-
-
 
 }
