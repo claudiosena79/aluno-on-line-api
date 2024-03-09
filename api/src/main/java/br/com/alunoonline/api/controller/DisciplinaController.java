@@ -15,6 +15,16 @@ public class DisciplinaController {
     @Autowired
     DisciplinaService service;
 
+    @GetMapping
+    public List<Disciplina> getDisciplinas(){
+        return service.findAll();
+    }
+
+    @PostMapping("/importar")
+    public void importarDisciplinas(){
+        service.importarDisciplinas();
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody Disciplina disciplina){
